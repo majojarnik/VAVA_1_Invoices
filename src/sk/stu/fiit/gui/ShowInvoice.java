@@ -91,7 +91,7 @@ public class ShowInvoice extends javax.swing.JFrame {
         tableCustomer = new javax.swing.JTable();
         lblCustomer = new javax.swing.JLabel();
         lblDate = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnClose = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(500, 470));
@@ -131,21 +131,20 @@ public class ShowInvoice extends javax.swing.JFrame {
         lblDate.setText("Dátum");
         getContentPane().add(lblDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
 
-        jButton1.setText("OK");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnClose.setText("OK");
+        btnClose.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                btnCloseMouseClicked(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 390, -1, -1));
+        getContentPane().add(btnClose, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 390, 70, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        setVisible(false);
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1MouseClicked
+    private void btnCloseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCloseMouseClicked
+        dispose();
+    }//GEN-LAST:event_btnCloseMouseClicked
 
     /**
      * @param args the command line arguments
@@ -183,7 +182,7 @@ public class ShowInvoice extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnClose;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel lblCommodity;

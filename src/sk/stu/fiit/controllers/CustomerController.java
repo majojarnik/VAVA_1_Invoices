@@ -36,7 +36,6 @@ public class CustomerController {
         cus.setPsc(psc);
         cus.setStreet(street);
         
-        //Data.getAllCustomers().add(cus);
     }
     
     public CustomerController(){

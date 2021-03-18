@@ -22,8 +22,16 @@ public class AddCommodity extends javax.swing.JFrame {
      * Creates new form AddCommodity
      */
     
+    public AddCommodity() {
+        initComponents();
+    }
+    
     private TablesCommodity parent;
-
+     
+    public void initializeAddCommodity(TablesCommodity parent){
+        this.parent = parent;
+    }
+    
     private boolean editing = false;
     private Commodity comm;
     
@@ -35,15 +43,8 @@ public class AddCommodity extends javax.swing.JFrame {
         editing = true;
         this.comm = comm;
     }
-
     
-    public AddCommodity() {
-        initComponents();
-    }
     
-    public void initializeAddCommodity(TablesCommodity parent){
-        this.parent = parent;
-    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -75,23 +76,12 @@ public class AddCommodity extends javax.swing.JFrame {
 
         lblName.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
         lblName.setText("Názov");
-        lblName.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                lblNamePropertyChange(evt);
-            }
-        });
         getContentPane().add(lblName, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, -1, -1));
 
         lblPrice.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
         lblPrice.setText("Cena");
         getContentPane().add(lblPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, -1, -1));
         getContentPane().add(tfdName, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, 260, -1));
-
-        tfdPrice.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfdPriceActionPerformed(evt);
-            }
-        });
         getContentPane().add(tfdPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, 260, -1));
 
         txaDesc.setColumns(20);
@@ -101,9 +91,9 @@ public class AddCommodity extends javax.swing.JFrame {
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 200, 260, 100));
 
         btnSave.setText("Uložiť");
-        btnSave.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSaveActionPerformed(evt);
+        btnSave.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnSaveMouseClicked(evt);
             }
         });
         getContentPane().add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 330, -1, -1));
@@ -125,15 +115,11 @@ public class AddCommodity extends javax.swing.JFrame {
 
     CommodityController cuscon = new CommodityController();
 
-    private void tfdPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfdPriceActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfdPriceActionPerformed
+    private void btnCancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelMouseClicked
+        dispose();
+    }//GEN-LAST:event_btnCancelMouseClicked
 
-    private void lblNamePropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_lblNamePropertyChange
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lblNamePropertyChange
-
-    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+    private void btnSaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSaveMouseClicked
         String name = tfdName.getText();
         String desc = txaDesc.getText();
         String price = tfdPrice.getText();
@@ -144,24 +130,15 @@ public class AddCommodity extends javax.swing.JFrame {
             else
                 cuscon.addCommodity(name, desc, price);
             
-            System.out.println(Data.getAllCommodities());
-            setVisible(false);
+            dispose();
             parent.initializeCommodityTable();
-            
-
-        }
-        catch (NumberFormatException e){
+        } catch (NumberFormatException e){
             JOptionPane.showMessageDialog(rootPane, "Cena musí obsahovať reálne číslo.", "Chyba v cene", JOptionPane.ERROR_MESSAGE);
         } catch (BlankFields ex) {
-            JOptionPane.showMessageDialog(rootPane, "Musite vyplnit vsetky polia", "Nevyplnene polia", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane, "Musíte vyplniť všetky polia", "Nevyplnené polia", JOptionPane.ERROR_MESSAGE);
         }
-      
-    }//GEN-LAST:event_btnSaveActionPerformed
-
-    private void btnCancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelMouseClicked
-        dispose();
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnCancelMouseClicked
+        
+    }//GEN-LAST:event_btnSaveMouseClicked
 
     /**
      * @param args the command line arguments

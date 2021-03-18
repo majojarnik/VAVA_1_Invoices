@@ -7,7 +7,6 @@ package sk.stu.fiit.gui;
 
 import javax.swing.JOptionPane;
 import sk.stu.fiit.controllers.CustomerController;
-import sk.stu.fiit.data.Data;
 import sk.stu.fiit.exceptions.BlankFields;
 import sk.stu.fiit.model.Customer;
 
@@ -91,21 +90,15 @@ public class AddCustomer extends javax.swing.JFrame {
         lblHeading.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
         lblHeading.setText("Pridanie zákazníka");
         getContentPane().add(lblHeading, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, -1, -1));
-
-        tfdName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfdNameActionPerformed(evt);
-            }
-        });
         getContentPane().add(tfdName, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 58, 260, 30));
         getContentPane().add(tfdStreet, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, 260, 30));
         getContentPane().add(tfdCity, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 200, 260, 30));
         getContentPane().add(tfdPSC, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 270, 260, -1));
 
         btnSave.setText("Uložiť zákazníka");
-        btnSave.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSaveActionPerformed(evt);
+        btnSave.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnSaveMouseClicked(evt);
             }
         });
         getContentPane().add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 320, 120, -1));
@@ -123,7 +116,11 @@ public class AddCustomer extends javax.swing.JFrame {
     
     CustomerController cuscon = new CustomerController();
     
-    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+    private void btnCancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelMouseClicked
+        dispose();
+    }//GEN-LAST:event_btnCancelMouseClicked
+
+    private void btnSaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSaveMouseClicked
         String name = tfdName.getText();
         String city = tfdCity.getText();
         String street = tfdStreet.getText();
@@ -135,24 +132,14 @@ public class AddCustomer extends javax.swing.JFrame {
             else
                 cuscon.addCustomer(name, city, street, psc);
             
-            System.out.println(Data.getAllCustomers());
-            setVisible(false);
+            dispose();
             mainPage.initializeCustomerTable();
         }
         catch(BlankFields e){
             JOptionPane.showMessageDialog(rootPane, "Musite vyplnit vsetky polia", "Nevyplnene polia", JOptionPane.ERROR_MESSAGE);
 
         }
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnSaveActionPerformed
-
-    private void tfdNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfdNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfdNameActionPerformed
-
-    private void btnCancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelMouseClicked
-        dispose();
-    }//GEN-LAST:event_btnCancelMouseClicked
+    }//GEN-LAST:event_btnSaveMouseClicked
 
     /**
      * @param args the command line arguments

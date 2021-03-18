@@ -41,7 +41,7 @@ public class MainPage extends javax.swing.JFrame implements TablesCommodity{
     private void initComponents() {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel2 = new javax.swing.JPanel();
+        pnlAddInvoice = new javax.swing.JPanel();
         lblHeading = new javax.swing.JLabel();
         lblCustomer = new javax.swing.JLabel();
         cmbCustomer = new javax.swing.JComboBox<>();
@@ -54,19 +54,19 @@ public class MainPage extends javax.swing.JFrame implements TablesCommodity{
         tableCommInvoice = new javax.swing.JTable();
         btnChooseCom = new javax.swing.JButton();
         btnRemComm = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
+        pnlListCommodity = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tableCommodities = new javax.swing.JTable();
         btnAddComm = new javax.swing.JButton();
         btnEditComm = new javax.swing.JButton();
-        jPanel4 = new javax.swing.JPanel();
+        pnlListCustomer = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableCustomers = new javax.swing.JTable();
         btnAddCus = new javax.swing.JButton();
         btnEditCus = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
+        pnlListInvoice = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        tableInv = new javax.swing.JTable();
+        tableInvoices = new javax.swing.JTable();
         btnShowInvDetail = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -75,26 +75,16 @@ public class MainPage extends javax.swing.JFrame implements TablesCommodity{
         jTabbedPane1.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
         jTabbedPane1.setMinimumSize(new java.awt.Dimension(500, 470));
         jTabbedPane1.setPreferredSize(new java.awt.Dimension(500, 470));
-        jTabbedPane1.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                jTabbedPane1StateChanged(evt);
-            }
-        });
 
-        jPanel2.addComponentListener(new java.awt.event.ComponentAdapter() {
-            public void componentShown(java.awt.event.ComponentEvent evt) {
-                jPanel2ComponentShown(evt);
-            }
-        });
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlAddInvoice.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblHeading.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
         lblHeading.setText("Vystavenie faktúry");
-        jPanel2.add(lblHeading, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 20, -1, -1));
+        pnlAddInvoice.add(lblHeading, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 20, -1, -1));
 
         lblCustomer.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
         lblCustomer.setText("Zákazník");
-        jPanel2.add(lblCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, -1));
+        pnlAddInvoice.add(lblCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, -1));
 
         cmbCustomer.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
             public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
@@ -105,7 +95,7 @@ public class MainPage extends javax.swing.JFrame implements TablesCommodity{
                 cmbCustomerPopupMenuWillBecomeVisible(evt);
             }
         });
-        jPanel2.add(cmbCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 430, 30));
+        pnlAddInvoice.add(cmbCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 430, 30));
 
         btnAddCustomer.setText("Pridať nového zákazníka");
         btnAddCustomer.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -113,19 +103,19 @@ public class MainPage extends javax.swing.JFrame implements TablesCommodity{
                 btnAddCustomerMouseClicked(evt);
             }
         });
-        jPanel2.add(btnAddCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 100, 180, -1));
+        pnlAddInvoice.add(btnAddCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 100, 180, -1));
 
         lblCommodity.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
         lblCommodity.setText("Zoznam tovarov");
-        jPanel2.add(lblCommodity, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, -1));
+        pnlAddInvoice.add(lblCommodity, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, -1));
 
         lblInfoPrice.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
         lblInfoPrice.setText("Celková cena:");
-        jPanel2.add(lblInfoPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, -1, 20));
+        pnlAddInvoice.add(lblInfoPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, -1, 20));
 
         lblPrice.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
         lblPrice.setText("0 EUR");
-        jPanel2.add(lblPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 350, -1, -1));
+        pnlAddInvoice.add(lblPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 350, -1, -1));
 
         btnSaveInvoice.setText("Vystaviť faktúru");
         btnSaveInvoice.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -133,7 +123,7 @@ public class MainPage extends javax.swing.JFrame implements TablesCommodity{
                 btnSaveInvoiceMouseClicked(evt);
             }
         });
-        jPanel2.add(btnSaveInvoice, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 400, -1, -1));
+        pnlAddInvoice.add(btnSaveInvoice, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 400, -1, -1));
 
         tableCommInvoice.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -164,7 +154,7 @@ public class MainPage extends javax.swing.JFrame implements TablesCommodity{
         tableCommInvoice.getAccessibleContext().setAccessibleName("");
         tableCommInvoice.getAccessibleContext().setAccessibleDescription("");
 
-        jPanel2.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 430, 120));
+        pnlAddInvoice.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 430, 120));
 
         btnChooseCom.setText("Vybrať tovar");
         btnChooseCom.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -172,7 +162,7 @@ public class MainPage extends javax.swing.JFrame implements TablesCommodity{
                 btnChooseComMouseClicked(evt);
             }
         });
-        jPanel2.add(btnChooseCom, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, -1, -1));
+        pnlAddInvoice.add(btnChooseCom, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, -1, -1));
 
         btnRemComm.setText("Odobrať tovar");
         btnRemComm.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -180,16 +170,16 @@ public class MainPage extends javax.swing.JFrame implements TablesCommodity{
                 btnRemCommMouseClicked(evt);
             }
         });
-        jPanel2.add(btnRemComm, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 300, -1, -1));
+        pnlAddInvoice.add(btnRemComm, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 300, -1, -1));
 
-        jTabbedPane1.addTab("Vystavenie faktúry", jPanel2);
+        jTabbedPane1.addTab("Vystavenie faktúry", pnlAddInvoice);
 
-        jPanel3.addComponentListener(new java.awt.event.ComponentAdapter() {
+        pnlListCommodity.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
-                jPanel3ComponentShown(evt);
+                pnlListCommodityComponentShown(evt);
             }
         });
-        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlListCommodity.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         List<String> columns = new ArrayList<String>();
         List<String[]> values = new ArrayList<String[]>();
@@ -206,7 +196,7 @@ public class MainPage extends javax.swing.JFrame implements TablesCommodity{
         tableCommodities.setModel(tableModel);
         jScrollPane2.setViewportView(tableCommodities);
 
-        jPanel3.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 470, 440));
+        pnlListCommodity.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 470, 440));
 
         btnAddComm.setText("Pridať tovar");
         btnAddComm.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -214,7 +204,7 @@ public class MainPage extends javax.swing.JFrame implements TablesCommodity{
                 btnAddCommMouseClicked(evt);
             }
         });
-        jPanel3.add(btnAddComm, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 440, -1, -1));
+        pnlListCommodity.add(btnAddComm, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 440, -1, -1));
 
         btnEditComm.setText("Upraviť tovar");
         btnEditComm.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -222,21 +212,21 @@ public class MainPage extends javax.swing.JFrame implements TablesCommodity{
                 btnEditCommMouseClicked(evt);
             }
         });
-        jPanel3.add(btnEditComm, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 440, -1, -1));
+        pnlListCommodity.add(btnEditComm, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 440, -1, -1));
 
-        jTabbedPane1.addTab("Zoznam tovarov", jPanel3);
+        jTabbedPane1.addTab("Zoznam tovarov", pnlListCommodity);
 
-        jPanel4.addComponentListener(new java.awt.event.ComponentAdapter() {
+        pnlListCustomer.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
-                jPanel4ComponentShown(evt);
+                pnlListCustomerComponentShown(evt);
             }
         });
-        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlListCustomer.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        tableCustomers.setModel(initializeCustomersTable());
+        tableCustomers.setModel(initializeCustomerTableModel());
         jScrollPane1.setViewportView(tableCustomers);
 
-        jPanel4.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 470, 440));
+        pnlListCustomer.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 470, 440));
 
         btnAddCus.setText("Pridať zákazníka");
         btnAddCus.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -244,7 +234,7 @@ public class MainPage extends javax.swing.JFrame implements TablesCommodity{
                 btnAddCusMouseClicked(evt);
             }
         });
-        jPanel4.add(btnAddCus, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 440, -1, -1));
+        pnlListCustomer.add(btnAddCus, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 440, -1, -1));
 
         btnEditCus.setText("Upraviť zákazníka");
         btnEditCus.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -252,16 +242,16 @@ public class MainPage extends javax.swing.JFrame implements TablesCommodity{
                 btnEditCusMouseClicked(evt);
             }
         });
-        jPanel4.add(btnEditCus, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 440, -1, -1));
+        pnlListCustomer.add(btnEditCus, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 440, -1, -1));
 
-        jTabbedPane1.addTab("Zoznam zákazníkov", jPanel4);
+        jTabbedPane1.addTab("Zoznam zákazníkov", pnlListCustomer);
 
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlListInvoice.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        tableInv.setModel(initializeTableInvoice());
-        jScrollPane4.setViewportView(tableInv);
+        tableInvoices.setModel(initializeInvoicesTableModel());
+        jScrollPane4.setViewportView(tableInvoices);
 
-        jPanel1.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 470, 440));
+        pnlListInvoice.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 470, 440));
 
         btnShowInvDetail.setText("Pozri detail faktúry");
         btnShowInvDetail.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -269,9 +259,9 @@ public class MainPage extends javax.swing.JFrame implements TablesCommodity{
                 btnShowInvDetailMouseClicked(evt);
             }
         });
-        jPanel1.add(btnShowInvDetail, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 440, -1, -1));
+        pnlListInvoice.add(btnShowInvDetail, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 440, -1, -1));
 
-        jTabbedPane1.addTab("Zoznam faktúr", jPanel1);
+        jTabbedPane1.addTab("Zoznam faktúr", pnlListInvoice);
 
         getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 470, 500));
 
@@ -284,7 +274,7 @@ public class MainPage extends javax.swing.JFrame implements TablesCommodity{
 
     private List<Commodity> InvoiceComs = new ArrayList<>();
             
-    private TableModel initializeCustomersTable(){
+    private TableModel initializeCustomerTableModel(){
         List<String> columns = new ArrayList<String>();
         List<String[]> values = new ArrayList<String[]>();
 
@@ -302,54 +292,10 @@ public class MainPage extends javax.swing.JFrame implements TablesCommodity{
     }
     
     public void initializeCustomerTable(){
-        tableCustomers.setModel(initializeCustomersTable());
+        tableCustomers.setModel(initializeCustomerTableModel());
     }
     
-    private TableModel initializeTableInvoice(){
-        List<String> columns = new ArrayList<String>();
-        List<String[]> values = new ArrayList<String[]>();
-
-        for (Invoice inv: Data.getAllInvoices()){
-            double price = 0;
-            System.out.println(inv.getCommodities());
-            for (Commodity com: inv.getCommodities()){
-                System.out.println("Som vo forloope kde rátam cenu");
-                price += com.getPrice()/100.0 * com.getNumber();
-            }
-            values.add(new String[] {String.valueOf(inv.getDate()), inv.getCustomer().getName(), String.format("%.2f EUR", price)});
-        }
-
-        columns.add("Dátum");
-        columns.add("Zákazník");
-        columns.add("Cena");
-
-        TableModel tableModel = new DefaultTableModel(values.toArray(new Object[][] {}), columns.toArray());
-        return tableModel;
-    }
-    
-    private void initializeInvoicesTable(){
-        List<String> columns = new ArrayList<String>();
-        List<String[]> values = new ArrayList<String[]>();
-
-        for (Invoice inv: Data.getAllInvoices()){
-            double price = 0;
-            System.out.println(inv.getCommodities());
-            for (Commodity com: inv.getCommodities()){
-                System.out.println("Som vo forloope kde rátam cenu");
-                price += com.getPrice()/100.0 * com.getNumber();
-            }
-            values.add(new String[] {String.valueOf(inv.getDate()), inv.getCustomer().getName(), String.format("%.2f EUR", price)});
-        }
-
-        columns.add("Dátum");
-        columns.add("Zákazník");
-        columns.add("Cena");
-
-        TableModel tableModel = new DefaultTableModel(values.toArray(new Object[][] {}), columns.toArray());
-        tableInv.setModel(tableModel);;
-    }
-    
-    public TableModel initializeCommoditiesTable(List<Commodity> data){
+    private TableModel initializeCommoditiesTableModel(List<Commodity> data){
         List<String> columns = new ArrayList<String>();
         List<String[]> values = new ArrayList<String[]>();
 
@@ -363,6 +309,36 @@ public class MainPage extends javax.swing.JFrame implements TablesCommodity{
 
         TableModel tableModel = new DefaultTableModel(values.toArray(new Object[][] {}), columns.toArray());
         return tableModel;
+    }
+    
+    @Override
+    public void initializeCommodityTable() {
+        tableCommodities.setModel(initializeCommoditiesTableModel(Data.getAllCommodities())); 
+    }
+
+    
+    private TableModel initializeInvoicesTableModel(){
+        List<String> columns = new ArrayList<String>();
+        List<String[]> values = new ArrayList<String[]>();
+
+        for (Invoice inv: Data.getAllInvoices()){
+            double price = 0;
+            for (Commodity com: inv.getCommodities()){
+                price += com.getPrice()/100.0 * com.getNumber();
+            }
+            values.add(new String[] {String.valueOf(inv.getDate()), inv.getCustomer().getName(), String.format("%.2f EUR", price)});
+        }
+
+        columns.add("Dátum");
+        columns.add("Zákazník");
+        columns.add("Cena");
+
+        TableModel tableModel = new DefaultTableModel(values.toArray(new Object[][] {}), columns.toArray());
+        return tableModel;
+    }
+    
+    public void initializeInvoicesTable(){
+        tableInvoices.setModel(initializeInvoicesTableModel());;
     }
     
     public void initializeCommoditiesTableInvoice(){
@@ -386,36 +362,30 @@ public class MainPage extends javax.swing.JFrame implements TablesCommodity{
         tableCommInvoice.setModel(tableModel);
         lblPrice.setText(String.format("%.2f EUR", price));
         
-        
     }
     
     private void cmbCustomerPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_cmbCustomerPopupMenuWillBecomeVisible
-        List<String> nieco = new ArrayList<String>();
+        List<String> names = new ArrayList<String>();
         for (Customer cus: Data.getAllCustomers()){
-            nieco.add(cus.getName());
+            names.add(cus.getName());
         }
         
-        String[] array = nieco.toArray(new String[0]);
+        String[] array = names.toArray(new String[0]);
         
         cmbCustomer.setModel(new DefaultComboBoxModel(array));
     }//GEN-LAST:event_cmbCustomerPopupMenuWillBecomeVisible
 
-    private void jTabbedPane1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabbedPane1StateChanged
-        System.out.println("Nieco");
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTabbedPane1StateChanged
+    private void pnlListCommodityComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_pnlListCommodityComponentShown
+        tableCommodities.setModel(initializeCommoditiesTableModel(Data.getAllCommodities())); 
+    }//GEN-LAST:event_pnlListCommodityComponentShown
 
-    private void jPanel3ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel3ComponentShown
-        tableCommodities.setModel(initializeCommoditiesTable(Data.getAllCommodities())); 
-    }//GEN-LAST:event_jPanel3ComponentShown
-
-    private void jPanel4ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel4ComponentShown
-        tableCustomers.setModel(initializeCustomersTable());
-    }//GEN-LAST:event_jPanel4ComponentShown
+    private void pnlListCustomerComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_pnlListCustomerComponentShown
+        tableCustomers.setModel(initializeCustomerTableModel());
+    }//GEN-LAST:event_pnlListCustomerComponentShown
 
     private void btnChooseComMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnChooseComMouseClicked
-        Zoznam zoznam = new Zoznam();
-        zoznam.initializeZoznam(this);
+        CommodityChooser zoznam = new CommodityChooser();
+        zoznam.initializeParent(this);
         zoznam.setVisible(true);
     }//GEN-LAST:event_btnChooseComMouseClicked
 
@@ -423,42 +393,7 @@ public class MainPage extends javax.swing.JFrame implements TablesCommodity{
         AddCommodity comm = new AddCommodity();
         comm.setVisible(true);
         comm.initializeAddCommodity(this);
-        
-        /*int rows[] = jTable1.getSelectedRows();
-        for (int i=0; i < rows.length; i++){
-            String name = String.valueOf(jTable1.getValueAt(rows[i], 0));            
-            String desc = String.valueOf(jTable1.getValueAt(rows[i], 1));
-            try {
-                System.out.println("pred 1");
-                String price = String.valueOf(jTable1.getValueAt(rows[i], 2));
-                
-                System.out.println("pred 2");
-                
-                double priceN = Double.parseDouble(price);
-                
-                int cena = (int) (priceN * 100);
-                System.out.println("pred 3");
-                Commodity com = new Commodity(name, desc, cena, 1);
-                System.out.println("pred 4");
-                
-                boolean add = true;
-                for (Commodity comm: InvoiceComs){
-                    if (comm.getName().equals(com.getName()) && comm.getDesc().equals(com.getDesc()) && comm.getPrice() == com.getPrice())
-                        add = false;
-                }
-                
-                if (add)
-                    InvoiceComs.add(com);
-                
-            } catch (Exception e) {
-                System.out.println("Toto asi nenastane");
-            }            
-        }*/
     }//GEN-LAST:event_btnAddCommMouseClicked
-
-    private void jPanel2ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel2ComponentShown
-        //jTable3.setModel(initializeCommoditiesTableInvoice());
-    }//GEN-LAST:event_jPanel2ComponentShown
 
     private void btnAddCusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddCusMouseClicked
         AddCustomer customer = new AddCustomer();
@@ -469,17 +404,14 @@ public class MainPage extends javax.swing.JFrame implements TablesCommodity{
     InvoiceControler invCon = new InvoiceControler();
     
     private void btnSaveInvoiceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSaveInvoiceMouseClicked
-        int cus = cmbCustomer.getSelectedIndex();
-        
-        System.out.println(cus);
-        
+        int cus = cmbCustomer.getSelectedIndex();        
         
         try {
             invCon.addInvoice(cus, InvoiceComs);
             InvoiceComs.clear();
             initializeCommoditiesTableInvoice();
             cmbCustomer.setSelectedIndex(-1);
-            JOptionPane.showMessageDialog(rootPane, "Faktura bola úspešne vytvorená. Môžete si ju pozrieť v zozname faktúr.", "Vytvorená faktúra", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane, "Faktúra bola úspešne vytvorená. Môžete si ju pozrieť v zozname faktúr.", "Vytvorená faktúra", JOptionPane.INFORMATION_MESSAGE);
             initializeInvoicesTable();
             
         } catch (BlankFields ex) {
@@ -512,7 +444,7 @@ public class MainPage extends javax.swing.JFrame implements TablesCommodity{
             commodity.initializeAddCommodity(this);
         }
         else
-            JOptionPane.showMessageDialog(rootPane, "Vyberte tovar, ktorú si prajete upraviť.", "Nevybraný tovar", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane, "Vyberte tovar, ktorý si prajete upraviť.", "Nevybraný tovar", JOptionPane.ERROR_MESSAGE);
             
     }//GEN-LAST:event_btnEditCommMouseClicked
 
@@ -523,7 +455,7 @@ public class MainPage extends javax.swing.JFrame implements TablesCommodity{
     }//GEN-LAST:event_btnAddCustomerMouseClicked
 
     private void btnShowInvDetailMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnShowInvDetailMouseClicked
-        int inv = tableInv.getSelectedRow();
+        int inv = tableInvoices.getSelectedRow();
         
         if (Boolean.logicalAnd(inv > -1, inv < Data.getAllInvoices().size())){
             ShowInvoice showInv = new ShowInvoice();
@@ -593,10 +525,6 @@ public class MainPage extends javax.swing.JFrame implements TablesCommodity{
     private javax.swing.JButton btnSaveInvoice;
     private javax.swing.JButton btnShowInvDetail;
     private javax.swing.JComboBox<String> cmbCustomer;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -607,16 +535,15 @@ public class MainPage extends javax.swing.JFrame implements TablesCommodity{
     private javax.swing.JLabel lblHeading;
     private javax.swing.JLabel lblInfoPrice;
     private javax.swing.JLabel lblPrice;
+    private javax.swing.JPanel pnlAddInvoice;
+    private javax.swing.JPanel pnlListCommodity;
+    private javax.swing.JPanel pnlListCustomer;
+    private javax.swing.JPanel pnlListInvoice;
     private javax.swing.JTable tableCommInvoice;
     private javax.swing.JTable tableCommodities;
     private javax.swing.JTable tableCustomers;
-    private javax.swing.JTable tableInv;
+    private javax.swing.JTable tableInvoices;
     // End of variables declaration//GEN-END:variables
-
-    @Override
-    public void initializeCommodityTable() {
-        tableCommodities.setModel(initializeCommoditiesTable(Data.getAllCommodities())); 
-    }
 
     
 }

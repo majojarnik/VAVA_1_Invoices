@@ -17,18 +17,18 @@ import sk.stu.fiit.model.Commodity;
  *
  * @author jarni
  */
-public class Zoznam extends javax.swing.JFrame implements TablesCommodity{
+public class CommodityChooser extends javax.swing.JFrame implements TablesCommodity{
     /**
      * Creates new form Zoznam
      */
     //private List<Commodity> CommoditiesInvoice = new ArrayList<>();
     private MainPage parent;
     
-    public Zoznam() {
+    public CommodityChooser() {
         initComponents();
     }
     
-    public void initializeZoznam(MainPage mainPage){
+    public void initializeParent(MainPage mainPage){
         parent = mainPage;
     }
 
@@ -42,7 +42,7 @@ public class Zoznam extends javax.swing.JFrame implements TablesCommodity{
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tableCommodities = new javax.swing.JTable();
         btnAddComInv = new javax.swing.JButton();
         txfNumber = new javax.swing.JTextField();
         lblNumber = new javax.swing.JLabel();
@@ -63,8 +63,8 @@ public class Zoznam extends javax.swing.JFrame implements TablesCommodity{
         columns.add("Cena");
 
         TableModel tableModel = new DefaultTableModel(values.toArray(new Object[][] {}), columns.toArray());
-        jTable1.setModel(tableModel);
-        jScrollPane1.setViewportView(jTable1);
+        tableCommodities.setModel(tableModel);
+        jScrollPane1.setViewportView(tableCommodities);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 220));
 
@@ -92,19 +92,22 @@ public class Zoznam extends javax.swing.JFrame implements TablesCommodity{
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddComInvMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddComInvMouseClicked
-        int row = jTable1.getSelectedRow();
+        int row = tableCommodities.getSelectedRow();
         
         if (row > -1){
-            String name = String.valueOf(jTable1.getValueAt(row, 0));            
-            String desc = String.valueOf(jTable1.getValueAt(row, 1));
+            String name = String.valueOf(tableCommodities.getValueAt(row, 0));            
+            String desc = String.valueOf(tableCommodities.getValueAt(row, 1));
             
             try {
-                String price = String.valueOf(jTable1.getValueAt(row, 2));                
+                String price = String.valueOf(tableCommodities.getValueAt(row, 2));                
                 double priceN = Double.parseDouble(price);              
                 int cena = (int) (priceN * 100);
                 
                 String number = txfNumber.getText();
                 int mnozstvo = Integer.parseInt(number);
+                
+                if (mnozstvo < 1)
+                    throw new Exception();
                 Commodity com = new Commodity(name, desc, cena, mnozstvo);
                 
                 boolean add = true;
@@ -127,39 +130,6 @@ public class Zoznam extends javax.swing.JFrame implements TablesCommodity{
         else
             JOptionPane.showMessageDialog(rootPane, "Vyberte tovar, ktorý si prajete vložiť do faktúry.", "Nevybraný tovar", JOptionPane.ERROR_MESSAGE);
         
-        /*for (int i=0; i < rows.length; i++){
-            String name = String.valueOf(jTable1.getValueAt(rows[i], 0));            
-            String desc = String.valueOf(jTable1.getValueAt(rows[i], 1));
-            try {
-                System.out.println(parent);
-                System.out.println(parent.getInvoiceComs());
-                String price = String.valueOf(jTable1.getValueAt(rows[i], 2));                
-                double priceN = Double.parseDouble(price);              
-                int cena = (int) (priceN * 100);
-                System.out.println("Som za cenu");
-                
-                String number = txfNumber.getText();
-                System.out.println("number = " + number);
-                int mnozstvo = Integer.parseInt(number);
-                System.out.println("Si nerozparsoval");
-                Commodity com = new Commodity(name, desc, cena, mnozstvo);
-                
-                boolean add = true;
-                System.out.println("Pred forloopom");
-                for (Commodity comm: parent.getInvoiceComs()){
-                    if (comm.getName().equals(com.getName()) && comm.getDesc().equals(com.getDesc()) && comm.getPrice() == com.getPrice())
-                        add = false;
-                }
-                
-                if (add)
-                    parent.getInvoiceComs().add(com);
-                
-                parent.initializeCommoditiesTableInvoice();
-                
-            } catch (Exception e) {
-                System.out.println("Toto asi nenastane");
-            }            
-        }*/
     }//GEN-LAST:event_btnAddComInvMouseClicked
 
     private void btnAddNewCommMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddNewCommMouseClicked
@@ -168,21 +138,6 @@ public class Zoznam extends javax.swing.JFrame implements TablesCommodity{
         commodity.initializeAddCommodity(this);
     }//GEN-LAST:event_btnAddNewCommMouseClicked
 
-    public void initializeTable(){
-        List<String> columns = new ArrayList<String>();
-        List<String[]> values = new ArrayList<String[]>();
-
-        for (Commodity com: Data.getAllCommodities()){
-            values.add(new String[] {com.getName(), com.getDesc(), String.valueOf(com.getPrice() / 100.0)});
-        }
-
-        columns.add("Názov");
-        columns.add("Opis tovaru");
-        columns.add("Cena");
-
-        TableModel tableModel = new DefaultTableModel(values.toArray(new Object[][] {}), columns.toArray());
-        jTable1.setModel(tableModel);
-    }
     /**
      * @param args the command line arguments
      */
@@ -200,20 +155,21 @@ public class Zoznam extends javax.swing.JFrame implements TablesCommodity{
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Zoznam.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CommodityChooser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Zoznam.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CommodityChooser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Zoznam.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CommodityChooser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Zoznam.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CommodityChooser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Zoznam().setVisible(true);
+                new CommodityChooser().setVisible(true);
             }
         });
     }
@@ -222,8 +178,8 @@ public class Zoznam extends javax.swing.JFrame implements TablesCommodity{
     private javax.swing.JButton btnAddComInv;
     private javax.swing.JButton btnAddNewComm;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblNumber;
+    private javax.swing.JTable tableCommodities;
     private javax.swing.JTextField txfNumber;
     // End of variables declaration//GEN-END:variables
 
@@ -241,5 +197,6 @@ public class Zoznam extends javax.swing.JFrame implements TablesCommodity{
         columns.add("Cena");
 
         TableModel tableModel = new DefaultTableModel(values.toArray(new Object[][] {}), columns.toArray());
-        jTable1.setModel(tableModel);    }
+        tableCommodities.setModel(tableModel);    
+    }
 }

@@ -25,18 +25,14 @@ public class InvoiceControler {
         if (cus == -1 || comms.isEmpty()){
             throw new BlankFields();
         }
-        System.out.println("comms = " + comms);
         Customer customer = Data.getAllCustomers().get(cus);
         Customer cust = new Customer(customer.getName(), customer.getStreet(), customer.getCity(), customer.getPsc()); 
                 
         LocalDate date = LocalDate.now(); 
-        System.out.println("date = " + date);
         
         List<Commodity> clone = new ArrayList<Commodity>(comms);
-        /*for (Commodity com: comms){
-            
-        }*/
-        Invoice inv = new Invoice(date ,customer, clone);
+
+        Invoice inv = new Invoice(date ,cust, clone);
         
         Data.getAllInvoices().add(inv);
     }

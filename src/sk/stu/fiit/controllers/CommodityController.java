@@ -32,30 +32,7 @@ public class CommodityController {
             throw e;
         }
     }
-    
-    public void addCommodity(String name, String desc, String price, String number) throws BlankFields{
-        
-        if ("".equals(name) || "".equals(desc) || "".equals(price)){
-            throw new BlankFields();
-        }
-        double cena;
-        try {
-            cena = Double.parseDouble(price) * 100;
-            int priceNew = (int) cena;
-            
-            int num = Integer.parseInt(number);
-            
-            Commodity com = new Commodity(name, desc, priceNew, num);
-            Data.getAllCommodities().add(com);
-        }
-        catch (NumberFormatException e){
-            throw e;
-        }
-    }
-    
-    public CommodityController(){
-    }
-
+ 
     public void editCommodity(Commodity comm, String name, String desc, String price) throws BlankFields{
         if ("".equals(name) || "".equals(desc) || "".equals(price)){
             throw new BlankFields();
@@ -73,5 +50,28 @@ public class CommodityController {
             throw e;
         }
     }
+        
+    public CommodityController(){
+    }
+    
+    /*public void addCommodity(String name, String desc, String price, String number) throws BlankFields{
+        
+        if ("".equals(name) || "".equals(desc) || "".equals(price)){
+            throw new BlankFields();
+        }
+        double cena;
+        try {
+            cena = Double.parseDouble(price) * 100;
+            int priceNew = (int) cena;
+            
+            int num = Integer.parseInt(number);
+            
+            Commodity com = new Commodity(name, desc, priceNew, num);
+            Data.getAllCommodities().add(com);
+        }
+        catch (NumberFormatException e){
+            throw e;
+        }
+    }*/
     
 }
