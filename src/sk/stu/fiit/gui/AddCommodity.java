@@ -133,7 +133,7 @@ public class AddCommodity extends javax.swing.JFrame {
             dispose();
             parent.initializeCommodityTable();
         } catch (NumberFormatException e){
-            JOptionPane.showMessageDialog(rootPane, "Cena musí obsahovať reálne číslo.", "Chyba v cene", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane, "Cena musí obsahovať kladné reálne číslo.", "Chyba v cene", JOptionPane.ERROR_MESSAGE);
         } catch (BlankFields ex) {
             JOptionPane.showMessageDialog(rootPane, "Musíte vyplniť všetky polia", "Nevyplnené polia", JOptionPane.ERROR_MESSAGE);
         }

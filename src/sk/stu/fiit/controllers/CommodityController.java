@@ -24,6 +24,9 @@ public class CommodityController {
         double cena;
         try {
             cena = Double.parseDouble(price) * 100;
+            if (cena < 0) {
+                throw new NumberFormatException();
+            }
             int priceNew = (int) cena;
             Commodity com = new Commodity(name, desc, priceNew);
             Data.getAllCommodities().add(com);
@@ -40,6 +43,9 @@ public class CommodityController {
         double cena;
         try {
             cena = Double.parseDouble(price) * 100;
+            if (cena < 0) {
+                throw new NumberFormatException();
+            }
             int priceNew = (int) cena;
             comm.setName(name);
             comm.setDesc(desc);
